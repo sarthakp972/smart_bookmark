@@ -130,6 +130,13 @@ export default function HomePage() {
   };
 
   const handleDeleteBookmark = async (id) => {
+    // Show confirmation dialog
+    const confirmed = window.confirm('Are you sure you want to delete this bookmark?');
+    
+    if (!confirmed) {
+      return; // User cancelled, don't delete
+    }
+
     // Delete bookmark from Supabase
     const { error } = await supabase
       .from('book_mark')
